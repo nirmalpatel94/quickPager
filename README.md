@@ -1,1 +1,1 @@
-# quickPager
+# Quickly change pager proxy 

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			body
+			{
+				padding: 20px;
+				height: 100px;
+				width: 300px;
+			}
+
+			.Proxy-changeTitle
+			{
+				margin-bottom: 10px !important;
+			}
+
+			#pulldata
+			{
+				display: none;
+			}
+
+			.Port
+			{
+				font-size: 16px;
+				margin-bottom: 20px;
+			}
+
+			.Port-choice
+			{
+				margin-left: 20px;
+			}
+
+			.Port-error
+			{
+				display: none;
+				font-size: 20px;
+				color: red;
+				font-weight: bold;
+				margin-top: 20px;
+			}
+		</style>
+		<script src="../../js/jquery/jquery.min.js"></script>
+		<script src="../../js/popup.js"></script>
+	</head>
+	<body>
+		<form class="Port" id="Port-form">
+			Pager Port: <input id="Port-choice" type="text" size="4" placeholder="9028"/>
+			<button type="submit" id="Port-submit">Change Port</button>
+
+			<div class="Port-error">Pager Not Found</div>
+		</div>
+	</body>
+</html>
