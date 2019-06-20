@@ -38,8 +38,41 @@
         font-weight: bold;
         margin-top: 20px;
       }
+
+      #spinner {
+        z-index: 2;
+        display: inline-block;
+        position: fixed;
+        top: calc(50% - 25px);
+        left: calc(50% - 25px);
+        width: 50px;
+        height: 50px;
+        border: 3px solid #8ac;
+        border-radius: 50%;
+        border-top-color: #00108e;
+        animation: spin 1s ease-in-out infinite;
+        -webkit-animation: spin 1s ease-in-out infinite;
+      }
+
+      #spinner-mask {
+        background-color: rgba(255,255,255,.5);
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      @keyframes spin {
+        to { -webkit-transform: rotate(360deg); }
+      }
+      @-webkit-keyframes spin {
+        to { -webkit-transform: rotate(360deg); }
+      }
     </style>
     <script src="../../js/jquery/jquery.min.js"></script>
+    <script src="../../js/jquery/jquery.form.min.js"></script>
     <script src="../../js/popup.js"></script>
   </head>
   <body>
@@ -48,6 +81,10 @@
       <button type="submit" id="Port-submit">Change Port</button>
 
       <div class="Port-error">Pager Not Found</div>
+      <div id="loading">
+        <div id="spinner"></div>
+        <div id="spinner-mask"></div>
+      </div>
     </div>
   </body>
 </html>
