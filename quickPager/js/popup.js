@@ -68,6 +68,7 @@ const fetchContent = () => {
   })
   .then(parseHTML)
   .catch(function(err) {
+    $('#loading').hide();
     $('.Port-error').show();
     $('.Port').siblings().remove();
     console.log('Failed to fetch page: ', err);
