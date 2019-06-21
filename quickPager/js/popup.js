@@ -1,11 +1,18 @@
-let hasStyle = false;
-
+/**
+ * Save current port in chrome local storage
+ * @param {number} port
+ */
 function savePort(port) {
   chrome.storage.local.set({ 'port': port }, function() {
     console.log('Saving Port ' + port);
   });
 }
 
+
+/**
+ * Parse pager html and add it to extension popup
+ * @param {string} html
+ */
 function parseHTML(html) {
   $('#loading').hide();
   let port = $('#Port-choice').val();
@@ -17,12 +24,8 @@ function parseHTML(html) {
   // Parse the text
   let doc = parser.parseFromString(html, "text/html");
 
-  if (!hasStyle) {
-    $(document.head).append($(doc.head).find('style'));
-    hasStyle = true;
-  }
-
-  $('.Port').siblings().remove();
+  // remove pager content and repopulate
+  $('.essentials').siblings().remove();
 
   // pick the sections we care about
   $(document.body).append($(doc).find('.Proxy'));
@@ -30,7 +33,7 @@ function parseHTML(html) {
   $(document.body).append($(doc).find('.Tasks'));
 
   // intercept link clicks and navigate through extension api
-  $('a').click(function(evt) {
+  $('a:not(.whitelist)').click(function(evt) {
     evt.preventDefault();
     const href = $(this).attr('href');
     chrome.tabs.update({
@@ -59,7 +62,10 @@ function parseHTML(html) {
   });
 }
 
-const fetchContent = () => {
+/**
+ * fetch html from pager
+ */
+function fetchContent() {
   let port = $('#Port-choice').val();
   fetch('https://localhost:' + port)
   .then(function(response) {
@@ -70,9 +76,75 @@ const fetchContent = () => {
   .catch(function(err) {
     $('#loading').hide();
     $('.Port-error').show();
-    $('.Port').siblings().remove();
+    $('.essentials').siblings().remove();
     console.log('Failed to fetch page: ', err);
   });
+}
+
+/**
+ * Create links to knowledge graph for the brand and the entity currently being
+ * viewed using the .json for the current tab
+ */
+async function fetchKnowledgeGraphLinks() {
+
+  // query the current tab
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    var currTab = tabs[0];
+
+    // currTab will only exist when on localhost/yextpages domains
+    if (currTab && currTab.url) {
+      let url = currTab.url.split('?')[0]; // remove query params
+
+      // remove .html from url if exists
+      if (url.endsWith('.html')) {
+        url = removeExtension(url);
+      }
+
+      // need to check index.json when on root page
+      if (url.endsWith('.net')) {
+        url += '/index';
+      } else if (url.endsWith('.net/')) {
+        url += 'index';
+      }
+
+      // fetch json for the page
+      fetch(url + '.json')
+      .then(async (res) => {
+        const json = await res.json();
+
+        if (json) {
+          if (json.businessId) {
+            $('#knowledge-manager-button').attr('href', `https://www.yext.com/s/${json.businessId}/entities`);
+            $('#knowledge-manager-button').show();
+          }
+
+          let entityID = json.id;
+
+          if (!entityID && json.profile && json.profile.meta) {
+            entityID = json.profile.meta.yextId;
+          }
+
+          if (entityID) {
+            $('#entity-button').attr('href', `https://www.yext.com/s/${json.businessId}/entity/edit?entityIds=${entityID}`);
+            $('#entity-button').show();
+          }
+        }
+      })
+    }
+  });
+}
+
+/**
+ * Remove file extension from a string
+ * @param {string} str
+ */
+function removeExtension (str){
+  var lastDotPosition = str.lastIndexOf('.');
+  if (lastDotPosition === -1) {
+    return str;
+  } else {
+    return str.substr(0, lastDotPosition);
+  }
 }
 
 $(document).ready(() => {
@@ -92,5 +164,7 @@ $(document).ready(() => {
 
     fetchContent();
   });
+
+  fetchKnowledgeGraphLinks();
 });
 

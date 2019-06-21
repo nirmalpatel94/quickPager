@@ -14,8 +14,8 @@
     "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
-    "https://localhost/*",
-    "http://localhost/*",
+    "*://localhost/*",
+    "*://*.yextpages.net/*",
     "storage"
   ],
   "content_security_policy": "script-src 'self' https://localhost/; object-src 'self'"

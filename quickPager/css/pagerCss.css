@@ -1,0 +1,365 @@
+body {
+  background-color: #eee;
+  margin: 0;
+  font-family: "Raleway", Verdana, Geneva, sans-serif;
+  word-break: break-word;
+}
+
+div,
+li {
+  box-sizing: border-box;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  margin: 0;
+}
+
+a,
+button,
+select,
+label {
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: #8ac;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.Input {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border: 0.125rem solid #ace;
+  border-radius: 0.625rem;
+  background-color: white;
+  font-size: 1rem;
+}
+
+.Button {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border: 0.125rem solid #ace;
+  border-radius: 0.625rem;
+  background-color: white;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.Button:hover {
+  background-color: #def;
+}
+
+.Button:active,
+.Button:focus,
+.Button--inverted {
+  background-color: #ace;
+  color: white;
+}
+
+.Button:disabled {
+  cursor: default;
+  color: #ccc;
+  background-color: white;
+  border-color: #ccc;
+}
+
+select {
+  border: 0.0625rem solid #ace;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+}
+
+.Header {
+  background-color: white;
+  border-bottom: 0.3125rem solid #ace;
+  box-shadow: 0 0.1875rem 1.25rem #ccc;
+  z-index: 1;
+}
+
+.Header-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem 4rem;
+  width: 100%;
+}
+
+.Header-title {
+  color: #008;
+  font-size: 2.5rem;
+  font-family: "Noto Serif", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-weight: bold;
+}
+
+.Header-logo {
+  height: auto;
+  width: 5rem;
+}
+
+.Banner {
+  margin: 2rem 4rem 0;
+  padding: 1rem;
+  border-radius: 0.625rem;
+  color: white;
+}
+
+.Banner.Banner--alert {
+  background-color: #30a293;
+}
+
+.Banner.Banner--error {
+  background-color: #b44;
+}
+
+.Dashboard {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-left: 4rem;
+  padding-right: 2rem;
+}
+
+.Dashboard-item {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.1875rem 1.25rem #ccc;
+}
+
+.Dashboard-itemTitle {
+  color: #00108e;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3125rem;
+  border-bottom: 0.1875rem solid #eee;
+}
+
+.Proxy-links,
+.Templates-links {
+  margin: 0 0.5rem;
+}
+
+.Proxy-rendering {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #008;
+}
+
+.Proxy-change {
+  margin-top: 2rem;
+}
+
+.Proxy-changeTitle {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.Proxy .Form {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.Proxy .Form-select {
+  margin-right: 1rem;
+}
+
+.Templates-content {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Templates-separator {
+  margin-right: 1rem;
+  color: #ace;
+}
+
+.Tasks-list {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.Tasks-message {
+  text-align: center;
+  font-style: italic;
+}
+
+.Tasks-item:not(:last-child) {
+  width: 100%;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.0625rem solid #eee;
+  margin-bottom: 0.5rem;
+}
+
+.Tasks-item form {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.Tasks-label {
+  padding-right: 1rem;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.Tasks-switch {
+  height: 1.375rem;
+  width: 3rem;
+  background-color: white;
+  border: 0.125rem solid #ccc;
+  border-radius: 1rem;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Tasks-switch--enabled {
+  background-color: #ace;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.Tasks-switchKnob {
+  height: 1rem;
+  width: 1rem;
+  margin: 0 -0.3125rem;
+  background-color: white;
+  border: 0.125rem solid #ccc;
+  border-radius: 1rem;
+}
+
+.Resources ul {
+  list-style-type: initial;
+  padding-left: 1rem;
+}
+
+.Resources li ul,
+.Resources li ol {
+  margin-top: 0.5rem;
+}
+
+.bar-graph {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 0.75em;
+  height: 0.75em;
+  margin-top: 0.1em;
+  margin-bottom: 0.25em;
+  margin-left: 0.4em;
+  padding-left: 0.0625rem;
+  padding-right: 0.0625rem;
+  vertical-align: bottom;
+  background-color: lightgray;
+}
+
+.bar-graph .bar:not(:first-child) {
+  margin-left: 0.0625rem;
+}
+
+.bar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.bar-component {
+  display: -ms-flexbox;
+  display: flex;
+  transition: 0.5s all;
+}
+
+.blue {
+  background-color: #56e;
+}
+
+.green {
+  background-color: #5e6;
+}
+
+.red {
+  background-color: #e56;
+}
+
+.clear {
+  -ms-flex-positive: 1000;
+  flex-grow: 1000;
+}
+
+@media (max-width: 48rem) {
+  .Header-row {
+    padding: 1rem;
+  }
+
+  .Banner {
+    margin: 0.5rem 0.5rem 0;
+    padding: 1rem;
+  }
+
+  .Dashboard {
+    margin-top: 0.5rem;
+    padding-top: 0;
+    padding-left: 0.5rem;
+    padding-right: 0;
+  }
+
+  .Dashboard-item {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .Proxy .Form {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .Proxy .Form-select {
+    margin-right: 0;
+    width: 100%;
+  }
+}
