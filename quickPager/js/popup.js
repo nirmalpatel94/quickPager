@@ -43,8 +43,13 @@ function parseHTML(html) {
 
   // modify form actions to not have relative path
   $('form').each(function() {
-    if ($(this).attr('action')) {
-      $(this).attr('action', 'https://localhost:' + port + $(this).attr('action'));
+    let action = $(this).attr('action');
+    if (action) {
+      if (!action.startsWith('/')) {
+        action = '/' + action;
+      }
+
+      $(this).attr('action', 'https://localhost:' + port + action);
     }
   });
 
